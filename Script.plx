@@ -1,5 +1,6 @@
-#!/usr/bin/perl -w
-$proc = ($#ARGV >= 0 and $ARGV[0]) eq "-p"?1:0;
+#!/usr/bin/perl
+$size = @ARGV;
+$proc = ($size >= 0 and $ARGV[0] eq "-p") 	?1:0;
 open(PASSWD, "/etc/passwd") or die $!." "."/etc/passwd";
 $i=0;
 while ($p = <PASSWD>) { 
@@ -12,7 +13,7 @@ while ($p = <PASSWD>) {
     }
 }
 
-foreach $user_inv_id (sort(invalid_user)){
+foreach $user_inv_id (sort(@invalid_user)){
     print "$user_inv_id\n";
 }
 close(PASSWD);
